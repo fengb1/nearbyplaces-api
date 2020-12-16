@@ -26,7 +26,7 @@ function addReview(id, placeid, content, author) {
 
 function search(keyword) {
     return postgrePool.query("select * from nearbyplaces.place where name like "
-      + keyword " or city like " + keyword + "or state like " + keyword).then(x => x.rows);
+      + keyword + " or city like " + keyword + "or state like " + keyword).then(x => x.rows);
 }
 
 
