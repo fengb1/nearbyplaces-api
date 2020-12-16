@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
   res.send("Welcome to Nearbyplaces API");
 })
 
-app.get('/place', (req, res) => {
+app.post('/place', (req, res) => {
     let name = req.body.name;
     let city = req.body.city;
     let state = req.body.state;
@@ -27,17 +27,25 @@ app.get('/place', (req, res) => {
     db.setPlace(id, name, city, state, description).then(x => response.json(x));
 })
 
+app.post('/remove', (req, res) => {
+    let name = req.body.name;
+    let city = req.body.city;
+    let state = req.body.state;
+    let description = req.body.description;
+    db.delPlace(name).then(x => response.json(x));
+})
+
 app.get('/places', (req, res) => {
     db.getPlaces().then(x => response.json(x));
 })
 
-app.get('/review/:placeId', (req, res) => {
-    let placeid = req.body.placeid;
+app.post('/review/:placeId', (req, res) => {
+    let placeid = req.params.placeId;
     let author = req.body.author;
     let content = req.body.content;
     let id = reviewId;
     reviewId += 1;
-    db.addReview(id, placeid, content, author).then(x => response.json({message: "Added review"}));
+    db.addReview(id, placeid, content, author).then(x => response.json(x));
 })
 
 app.get('/search', (req, res) => {

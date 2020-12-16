@@ -29,5 +29,8 @@ function search(keyword) {
       + keyword + " or city like " + keyword + "or state like " + keyword).then(x => x.rows);
 }
 
+function delPlace(name) {
+    return postgrePool.query("del from nearbyplaces.place where name == " + name).then(x => x.rows);
+}
 
-module.exports.db = {setPlace, getPlaces, addReview, search}
+module.exports.db = {setPlace, getPlaces, addReview, search, delPlace}
