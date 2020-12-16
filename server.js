@@ -31,8 +31,7 @@ app.post('/remove', (req, res) => {
     let name = req.body.name;
     let city = req.body.city;
     let state = req.body.state;
-    let description = req.body.description;
-    db.delPlace(name).then(x => response.json(x));
+    db.delPlace(name, city, state).then(x => response.json(x));
 })
 
 app.get('/places', (req, res) => {
