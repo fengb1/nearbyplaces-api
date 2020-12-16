@@ -14,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  response.send("Welcome to Nearbyplaces API");
+  res.send("Welcome to Nearbyplaces API");
 })
 
 app.get('/place', (req, res) => {
