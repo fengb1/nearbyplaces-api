@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('.env').config();
 const { Pool } = require('pg');
 
 const postgreConnectionString =
