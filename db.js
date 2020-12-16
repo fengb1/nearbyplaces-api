@@ -21,7 +21,7 @@ function getPlaces() {
 
 function addReview(id, placeid, content, author) {
     return postgrePool.query("insert into nearbyplaces.review (id, placeid, text, author)" +
-      "values (" + id + ", " + placeid + ", " + content + ", " + author ")").then(x => x.rows);
+      "values (" + id + ", " + placeid + ", " + content + ", " + author + ")").then(x => x.rows);
 }
 
 function search(keyword) {
