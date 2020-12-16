@@ -7,7 +7,8 @@ const app = express();
 
 const port = process.env.PORT || 3002;
 
-var id = 1;
+var placeId = 1;
+var reviewId = 1;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -21,9 +22,9 @@ app.get('/place', (req, res) => {
     let city = req.body.city;
     let state = req.body.state;
     let description = req.body.description;
-    let id = id;
-    id += 1;
-    db.setPlace(name, city, state, description, id).then(x => response.json(x));
+    let id = placeId;
+    placeId += 1;
+    db.setPlace(id, name, city, state, description).then(x => response.json(x));
 })
 
 app.get('/places', (req, res) => {
@@ -31,10 +32,12 @@ app.get('/places', (req, res) => {
 })
 
 app.get('/review/:placeId', (req, res) => {
-    let id = req.body.id;
+    let placeid = req.body.placeid;
     let author = req.body.author;
-    let text = req.body.text;
-    db.addReview(id, text, author).then(x => response.json({message: "Added review"}));
+    let content = req.body.content;
+    let id = reviewId;
+    reviewId += 1;
+    db.addReview(id, placeid, content, author).then(x => response.json({message: "Added review"}));
 })
 
 app.get('/search', (req, res) => {
